@@ -16,40 +16,27 @@ public class Utils
         FileReader fr = null;
         try
         {
-            String [] conexion_data = new String[3];
-            fr = new FileReader("conexion.dat");
+            /*String [] conexion_data = new String[3];
+            fr = new FileReader("data/conexion.dat");
             BufferedReader br = new BufferedReader(fr);
             String linea = "";
             int number = 0;
+            System.out.println("Finalizado conexion");
             while((linea = br.readLine()) != null)
             {
                 conexion_data[number] = linea.substring(linea.indexOf("=") + 1, linea.length());
                 number++;
                 if(number > 2)
                     break;
-            }
-            con = new Conexion(conexion_data[0], "BD_KARDEX", conexion_data[1], conexion_data[2]);
+            }*/
+            con = new Conexion("remotemysql.com", "SWiL8Iu0Mj", "SWiL8Iu0Mj", "iaJNKJHix0");
             con.conectar(false);
         }
-        catch (FileNotFoundException ex)
+        catch (Exception ex)
         {
             ex.printStackTrace();
         }
-        catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                fr.close();
-            }
-            catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
-        }
+
     }
     
     public static void restore(String table)

@@ -57,8 +57,8 @@ public class CConfiguracion implements IConfiguracion
         FileReader fr = null;
         try
         {
-            String [] conexion_data = new String[3];
-            fr = new FileReader("conexion.dat");
+            /*String [] conexion_data = new String[3];
+            fr = new FileReader("data/conexion.dat");
             BufferedReader br = new BufferedReader(fr);
             String linea = "";
             int number = 0;
@@ -70,12 +70,9 @@ public class CConfiguracion implements IConfiguracion
                     break;
             }
             txtHost.setText(conexion_data[0]);
-            txtUsuario.setText(conexion_data[1]);
+            txtUsuario.setText(conexion_data[1]);*/
         }
-        catch (FileNotFoundException ex)
-        {
-        }
-        catch (IOException ex)
+        catch (Exception ex)
         {
         }
         finally
@@ -93,7 +90,7 @@ public class CConfiguracion implements IConfiguracion
     @Override
     public void verificar(JTextField txtHost, JTextField txtUsuario, JPasswordField txtPass, JLabel lblEstado)
     {
-        Conexion newCon = new Conexion(txtHost.getText(), "BD_KARDEX", txtUsuario.getText(), String.valueOf(txtPass.getPassword()));
+        Conexion newCon = new Conexion("remotemysql.com", "SWiL8Iu0Mj", "SWiL8Iu0Mj", "iaJNKJHix0");
         if(newCon.conectar(true))
         {
             lblEstado.setForeground(new Color(0, 150, 0));
@@ -113,15 +110,15 @@ public class CConfiguracion implements IConfiguracion
         PrintWriter out = null;
         try
         {
-            con.setHost(txtHost.getText());
-            con.setUser(txtUsuario.getText());
-            con.setPassword(String.valueOf(txtPass.getPassword()));
+            con.setHost("remotemysql.com");
+            con.setUser("SWiL8Iu0Mj");
+            con.setPassword("iaJNKJHix0");
             
-            out = new PrintWriter("conexion.dat");
+            /*out = new PrintWriter("conexion.dat");
             out.print(  "host=" + txtHost.getText() +
                         "\nusuario=" + txtUsuario.getText() +
                         "\npassword=" + String.valueOf(txtPass.getPassword()) +
-                        "\n\nNo editar este archivo.");
+                        "\n\nNo editar este archivo.");*/
             
             con.conectar(false);
             
@@ -134,7 +131,7 @@ public class CConfiguracion implements IConfiguracion
             
             ventana.dispose();
         }
-        catch (FileNotFoundException ex)
+        catch (Exception ex)
         {
         }
         finally
